@@ -3,19 +3,21 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import "./LeagueTable.css";
 
+import Spinner from "../UI/Spinner/Spinner";
+
 const LeagueTable = (props) => {
-  const { code, name } = props.match.params;
+  const { code } = props.match.params;
   const [data, setData] = useState(null);
 
   useEffect(() => {
     props.onFetchLeague(code);
-  }, [props.onFetchLeague, code]);
+  }, [props.onFetchLeague, code]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setData(props.table);
   }, [props.table]);
 
-  let table;
+  let table = <Spinner />;
 
   if (data) {
     table = data.map((e, i) => (

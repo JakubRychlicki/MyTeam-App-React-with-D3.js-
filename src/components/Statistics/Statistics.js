@@ -6,6 +6,8 @@ import "./Statistics.css";
 import Checkboxes from "../UI/Checkboxes/Checkboxes";
 import BarChart from "../Charts/BarChart";
 
+import Spinner from "../UI/Spinner/Spinner";
+
 const Statistics = (props) => {
   const { match, onFetchLeague, total, home, away } = props;
   const { code } = match.params;
@@ -44,7 +46,7 @@ const Statistics = (props) => {
         ]}
         onChangeType={changeTypeMatches}
       />
-      <BarChart data={dataChart} />
+      {dataChart ? <BarChart data={dataChart} /> : <Spinner />}
     </div>
   );
 };
