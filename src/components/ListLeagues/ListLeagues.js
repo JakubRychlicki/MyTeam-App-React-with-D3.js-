@@ -33,7 +33,7 @@ const ListLeagues = () => {
     <Link
       key={index}
       to={{
-        pathname: `/league/${league.code}/${league.name}`,
+        pathname: `/league/${league.code}/${league.name}/statistics`,
       }}
     >
       <LeagueElement league={league} />

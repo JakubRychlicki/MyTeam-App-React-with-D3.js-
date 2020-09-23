@@ -2,12 +2,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 90px;
   background-color: #c2191f;
 }
 
 main {
   width: 1000px;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 90px);
   margin: 0 auto;
+}
+
+.logo {
+  cursor: pointer;
 }
