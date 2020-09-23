@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LeagueElement from "./LeagueElement/LeagueElement";
 import "./ListLeagues.css";
 import {
@@ -29,7 +30,14 @@ const leagues = [
 
 const ListLeagues = () => {
   const list = leagues.map((league, index) => (
-    <LeagueElement key={index} league={league} />
+    <Link
+      key={index}
+      to={{
+        pathname: `/league/${league.code}/${league.name}`,
+      }}
+    >
+      <LeagueElement league={league} />
+    </Link>
   ));
 
   return <div className="containerList">{list}</div>;

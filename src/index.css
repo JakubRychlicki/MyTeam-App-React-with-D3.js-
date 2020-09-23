@@ -11,3 +11,13 @@ html {
 #root {
   background-color: white;
 }
+
+a {
+  text-decoration: none;
+}
+svg {
+  overflow: visible;
+  display: block;
+  width: 100%;
+  height: 100%;
+}

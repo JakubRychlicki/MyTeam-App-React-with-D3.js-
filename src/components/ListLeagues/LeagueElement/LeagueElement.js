@@ -2,7 +2,7 @@ import React from "react";
 import "./LeagueElement.css";
 
 const LeagueElement = (props) => {
-  const { name, code, flag } = props.league;
+  const { name, flag } = props.league;
 
   return (
     <div className="leagueContainer">
