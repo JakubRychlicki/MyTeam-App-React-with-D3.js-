@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import "./LeagueTable.css";
@@ -7,20 +7,21 @@ import Spinner from "../UI/Spinner/Spinner";
 
 const LeagueTable = (props) => {
   const { code } = props.match.params;
-  const [data, setData] = useState(null);
+  const { data, onFetchLeague } = props;
 
   useEffect(() => {
-    props.onFetchLeague(code);
-  }, [props.onFetchLeague, code]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!data) {
+      const getLeague = () => {
+        return onFetchLeague(code);
+      };
+      getLeague();
+    }
+  }, [onFetchLeague, code, data]);
 
-  useEffect(() => {
-    setData(props.table);
-  }, [props.table]);
-
-  let table = <Spinner />;
+  let tableLeague = <Spinner />;
 
   if (data) {
-    table = data.map((e, i) => (
+    tableLeague = data.table.map((e, i) => (
       <div className="rowTable" key={i}>
         <div className={["cell", "position"].join(" ")}>{e.position}</div>
         <div className={["cell", "nameTeam"].join(" ")}>{e.team.name}</div>
@@ -51,7 +52,7 @@ const LeagueTable = (props) => {
           <div className="cell">GD</div>
           <div className="cell">Points</div>
         </div>
-        {table}
+        {tableLeague}
       </div>
     </div>
   );
@@ -59,7 +60,7 @@ const LeagueTable = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    table: state.league.total.table,
+    data: state.league.total,
   };
 };
 

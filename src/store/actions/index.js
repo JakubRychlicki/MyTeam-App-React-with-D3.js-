@@ -1,1 +1,1 @@
-export { fetchLeague } from "./league";
+export { fetchLeague, fetchScorers } from "./league";

@@ -1,9 +1,10 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  total: [],
-  home: [],
-  away: [],
+  total: null,
+  home: null,
+  away: null,
+  scorers: null,
   loading: false,
   error: null,
 };
@@ -26,6 +27,12 @@ const league = (state = initialState, action) => {
       return {
         ...state,
         away: action.away,
+        loading: false,
+      };
+    case actionTypes.LEAGUE_GET_SCORERS:
+      return {
+        ...state,
+        scorers: action.scorers,
         loading: false,
       };
     case actionTypes.LEAGUE_FETCH_START: {

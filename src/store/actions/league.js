@@ -35,6 +35,13 @@ export const getAwayMatches = (away) => {
   };
 };
 
+export const getLeagueScorers = (scorers) => {
+  return {
+    type: actionTypes.LEAGUE_GET_SCORERS,
+    scorers,
+  };
+};
+
 export const fetchLeague = (code) => {
   return (dispatch) => {
     const API = `https://api.football-data.org/v2/competitions/${code}/standings`;
@@ -49,6 +56,25 @@ export const fetchLeague = (code) => {
         dispatch(getTotalMatches(res.data.standings[0]));
         dispatch(getHomeMatches(res.data.standings[1]));
         dispatch(getAwayMatches(res.data.standings[2]));
+      })
+      .catch((error) => {
+        dispatch(leagueFetchFail(error));
+      });
+  };
+};
+
+export const fetchScorers = (code) => {
+  return (dispatch) => {
+    const API = `http://api.football-data.org/v2/competitions/${code}/scorers?limit=5`;
+    dispatch(leagueFetchStart());
+    axios
+      .get(API, {
+        headers: {
+          "X-Auth-Token": "8b1d3fa8716441268ec2208385fe0c04",
+        },
+      })
+      .then((res) => {
+        dispatch(getLeagueScorers(res.data.scorers));
       })
       .catch((error) => {
         dispatch(leagueFetchFail(error));

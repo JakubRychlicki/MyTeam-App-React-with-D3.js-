@@ -20,8 +20,10 @@ const Statistics = (props) => {
   };
 
   useEffect(() => {
-    onFetchLeague(code);
-  }, [onFetchLeague, code]);
+    if (!total && !home && !away) {
+      onFetchLeague(code);
+    }
+  }, [onFetchLeague, code, total, home, away]);
 
   useEffect(() => {
     if (typeMatches === "total") {
@@ -47,15 +49,16 @@ const Statistics = (props) => {
         onChangeType={changeTypeMatches}
       />
       {dataChart ? <BarChart data={dataChart} /> : <Spinner />}
+      <button onClick={() => console.log(total.length)}>siema</button>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    total: state.league.total.table,
-    home: state.league.home.table,
-    away: state.league.away.table,
+    total: state.league.total,
+    home: state.league.home,
+    away: state.league.away,
   };
 };
 

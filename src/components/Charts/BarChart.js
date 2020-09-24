@@ -21,16 +21,17 @@ const BarChart = ({ data }) => {
     if (!width && !height) return;
 
     if (data) {
+      const dataTable = data.table;
       // sorting the data
-      data.sort((a, b) => b.points - a.points);
+      dataTable.sort((a, b) => b.points - a.points);
       //xScale
       const xScale = scaleLinear()
-        .domain([0, max(data, (d) => d.playedGames)])
+        .domain([0, max(dataTable, (d) => d.playedGames)])
         .range([0, width - margin.left - margin.right]);
 
       //yScale
       const yScale0 = scaleBand()
-        .domain(data.map((d) => d.team.name))
+        .domain(dataTable.map((d) => d.team.name))
         .range([0, height - margin.top - margin.bottom])
         .padding(0.2);
 
@@ -42,7 +43,7 @@ const BarChart = ({ data }) => {
       //axies
 
       const xAxis = axisBottom(xScale)
-        .ticks(max(data, (d) => d.playedGames))
+        .ticks(max(dataTable, (d) => d.playedGames))
         .tickFormat((d, i) => {
           if (d === 1) {
             return d + " match";
@@ -65,7 +66,7 @@ const BarChart = ({ data }) => {
 
       const team_name = svg
         .selectAll(".team_name")
-        .data(data)
+        .data(dataTable)
         .join("g")
         .attr("class", "team_name")
         .attr("transform", (d) => `translate(0,${yScale0(d.team.name)})`);
