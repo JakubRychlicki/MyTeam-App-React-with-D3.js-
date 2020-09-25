@@ -49,7 +49,6 @@ const Statistics = (props) => {
         onChangeType={changeTypeMatches}
       />
       {dataChart ? <BarChart data={dataChart} /> : <Spinner />}
-      <button onClick={() => console.log(total.length)}>siema</button>
     </div>
   );
 };

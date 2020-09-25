@@ -14,7 +14,7 @@ import {
 const leagues = [
   { name: "Bundesliga", code: "BL1", flag: flagGermany },
   {
-    name: "Premiere League",
+    name: "Premier League",
     code: "PL",
     flag: flagEngland,
   },
