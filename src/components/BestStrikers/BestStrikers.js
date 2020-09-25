@@ -13,14 +13,11 @@ const BestStrikers = (props) => {
   const { scorers, onFetchScorers } = props;
 
   useEffect(() => {
-    if (!scorers) {
-      const getScorers = () => {
-        return onFetchScorers(code);
-      };
-
-      getScorers();
-    }
-  }, [onFetchScorers, code, scorers]);
+    const getScorers = () => {
+      return onFetchScorers(code);
+    };
+    getScorers();
+  }, [onFetchScorers, code]);
 
   let bestSrikersContent = <Spinner />;
 
