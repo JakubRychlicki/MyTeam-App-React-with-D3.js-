@@ -4,7 +4,7 @@ import * as actions from "../../store/actions/index";
 import "./Statistics.css";
 
 import Checkboxes from "../UI/Checkboxes/Checkboxes";
-import BarChart from "../Charts/BarChart";
+import BarChart from "../Charts/BarChart/BarChart";
 
 import Spinner from "../UI/Spinner/Spinner";
 
