@@ -4,9 +4,6 @@ import * as actions from "../../store/actions/index";
 import "./BestStrikers.css";
 
 import Spinner from "../UI/Spinner/Spinner";
-import GaugeChart from "../Charts/GaugeChart/GaugeChart";
-
-const colors = ["#FF4136", "#0074D9", "#FF851B", "#2ECC40", "#B10DC9"];
 
 const BestStrikers = (props) => {
   const { code } = props.match.params;
@@ -19,31 +16,66 @@ const BestStrikers = (props) => {
     getScorers();
   }, [onFetchScorers, code]);
 
+  const getUnique = (arr, comp) => {
+    const unique = arr
+      .map((e) => e[comp])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter((e) => arr[e])
+      .map((e) => arr[e]);
+
+    return unique;
+  };
+
+  const getPlaces = () => {
+    const places = [];
+    if (scorers) {
+      const results = getUnique(scorers, "numberOfGoals");
+      const arr = scorers;
+      let size = 0;
+      let currentPlace = 1;
+
+      for (let place = 0; place < results.length; place++) {
+        for (let i = 0; i < arr.length; i++) {
+          if (results[place].numberOfGoals === arr[i].numberOfGoals) {
+            places.push(currentPlace);
+            size += 1;
+          } else {
+            currentPlace += size;
+            place++;
+            places.push(currentPlace);
+          }
+        }
+      }
+      return places;
+    }
+  };
+
   let bestSrikersContent = <Spinner />;
 
   if (scorers) {
-    let gaugeChart = <GaugeChart data={scorers} colors={colors} />;
-    let tableScorers = scorers.map((d, index) => (
-      <div key={index}>
-        <h3 className="playerBox" style={{ color: colors[index] }}>
-          <span className="playerText">{d.player.name} </span>
-          <span className="playerGoals">{d.numberOfGoals} goals for</span>
-          <span className="playerTeam">{d.team.name} </span>
-        </h3>
-      </div>
-    ));
-    bestSrikersContent = (
-      <>
-        <div className="gaugeChartContainer">{gaugeChart}</div>
-        <div className="scorersTableContainer">
-          <h2 className="titleStrikers">Best Strikers</h2>
-          {tableScorers}
+    bestSrikersContent = scorers.map((d, index) => {
+      let places = getPlaces();
+      return (
+        <div className="scorersTableContainer" key={index}>
+          <h3 className="playerBox">
+            <span>{places[index]}.</span>
+            <span className="playerText">
+              {d.player.name}
+              <span className="playerTeam">({d.team.name})</span>
+            </span>
+            <span className="playerGoals">{d.numberOfGoals} goals</span>
+          </h3>
         </div>
-      </>
-    );
+      );
+    });
   }
 
-  return <div className="strikersContainer">{bestSrikersContent}</div>;
+  return (
+    <div className="strikersContainer">
+      <h3 className="titleStrikers">Best Strikers</h3>
+      {bestSrikersContent}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
