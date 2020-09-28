@@ -4,6 +4,8 @@ App to check the statistics of popular football leagues.
 
 ---
 
+![myTeam](https://user-images.githubusercontent.com/35461058/94493017-dce6fd00-01eb-11eb-9105-2a8a1cae7a76.gif)
+
 ## Installation
 
 ### 1. npm install
@@ -18,7 +20,7 @@ App to check the statistics of popular football leagues.
 
 1. **_React_**
 
-2. **_D3_**
+2. **_D3.js_**
 
 3. **React Router**
 
