@@ -9,7 +9,14 @@ import BarChart from "../Charts/BarChart/BarChart";
 import Spinner from "../UI/Spinner/Spinner";
 
 const Statistics = (props) => {
-  const { match, onFetchLeague, total, home, away } = props;
+  const {
+    match,
+    onFetchLeague,
+
+    total,
+    home,
+    away,
+  } = props;
   const { code } = match.params;
 
   const [dataChart, setDataChart] = useState(null);
@@ -20,10 +27,10 @@ const Statistics = (props) => {
   };
 
   useEffect(() => {
-    if (!total && !home && !away) {
+    if (code) {
       onFetchLeague(code);
     }
-  }, [onFetchLeague, code, total, home, away]);
+  }, [onFetchLeague, code]);
 
   useEffect(() => {
     if (typeMatches === "total") {
@@ -55,6 +62,7 @@ const Statistics = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    codeLeague: state.league.code,
     total: state.league.total,
     home: state.league.home,
     away: state.league.away,

@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
+  code: null,
   total: null,
   home: null,
   away: null,
