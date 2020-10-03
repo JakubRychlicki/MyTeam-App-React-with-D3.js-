@@ -1,5 +1,5 @@
 .containerTable {
-  width: 800px;
+  width: 840px;
   margin: 10px auto;
 }
 
@@ -38,7 +38,15 @@
   width: 50px;
 }
 
+.titleNameTeam {
+  width: 120px;
+  text-align: center;
+  line-height: 40px;
+}
+
 .nameTeam {
-  padding: 5px 0;
+  width: 120px;
+  padding: 5px;
+  text-align: left;
   line-height: normal;
 }

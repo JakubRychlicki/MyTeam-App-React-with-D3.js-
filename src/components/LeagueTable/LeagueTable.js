@@ -42,7 +42,7 @@ const LeagueTable = (props) => {
       <div>
         <div className="rowTable">
           <div className={["cell", "position"].join(" ")}>Position</div>
-          <div className={["cell", "nameTeam"].join(" ")}>Team</div>
+          <div className={["cell", "titleNameTeam"].join(" ")}>Team</div>
           <div className="cell">Games</div>
           <div className="cell">Won</div>
           <div className="cell">Drawn</div>
