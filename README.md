@@ -4,7 +4,7 @@ App to check the statistics of popular football leagues.
 
 ---
 
-![myTeam](https://user-images.githubusercontent.com/35461058/94493017-dce6fd00-01eb-11eb-9105-2a8a1cae7a76.gif)
+![myTeamPoprawka](https://user-images.githubusercontent.com/35461058/94993082-ba0f6c80-058e-11eb-9029-290b67b7356a.gif)
 
 ## Installation
 
